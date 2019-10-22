@@ -2,8 +2,10 @@
     <div class="single-question mt-2">
         <div class="container">
             <h1>{{ message.content }}</h1>
+            <!-- <iframe> {{ message.cover }}</iframe> -->
+            <span> {{ message.cover }}</span>
 
-            <p class="mb-0">Domanda aggiunta da</p>
+            <p class="mb-0">Messaggio aggiunto da</p>
                 <span class="author_name">{{ message.author }}</span>
             </p>
             <p>{{ message.created_at }}</p>
@@ -21,7 +23,12 @@ export default {
         slug:{
             type: String,
             required: true
-        }
+        },
+        // pk:{
+        //     type: String,
+        //     required: true
+        // },
+
     },
 
     data() {
@@ -40,7 +47,7 @@ export default {
             apiService(endpoint)
                 .then(data => {
                   this.message = data;
-                  this.setPageTitle(data.content); //funzione per far si che il title sia uaguale al contenuto del message
+                  this.setPageTitle(data.content); //funzione per far si che il title sia uguale al contenuto del message
                 })
         }
     },
@@ -52,4 +59,6 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+
 </style>

@@ -6,5 +6,21 @@ router = DefaultRouter()
 router.register(r"messagestext", mv.MessageTextViewSet)
 
 urlpatterns = [
-    path("", include(router.urls))
+    path("", include(router.urls)),
+
+    path("messagestext/<slug:slug>/answers/",
+         mv.AnswerListAPIView.as_view(),
+         name="question-answers-list"),
+
+    path("messagestext/<slug:slug>/answer/",
+         mv.AnswerCreateAPIView.as_view(),
+         name="create-answer"),
+
+    path("answers/<int:pk>/",
+         mv.AnswerRUDAPIView.as_view(),
+         name="answer-detail"),
+
+    path("answers/<int:pk>/like/",
+         mv.AnswerLikeAPIView.as_view(),
+         name="answer-like")
 ]

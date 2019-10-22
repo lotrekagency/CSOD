@@ -1,17 +1,19 @@
+<!-- Questo è il nostro route component, che è di fatto un componente di tipo
+single-file -->
 <template>
   <div id="app">
-      <NavbarComponent/>
+      <SidebarComponent />
       <router-view />
   </div>
 </template>
 
 <script>
-import NavbarComponent from "./components/Navbar.vue"
+import SidebarComponent from "./components/Sidebar.vue"
 
 export default {
   name: "App",
   components: {
-      NavbarComponent
+      SidebarComponent
   }
 }
 </script>

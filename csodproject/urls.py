@@ -26,9 +26,9 @@ from users.forms import CustomUserForm
 #https://django-registration.readthedocs.io/en/3.0/one-step-workflow.html
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls), #URL per sezione amministrazione
 
-    path("accounts/register/",    #URL per registrazione tramite Broser
+    path("accounts/register/",    #URL per registrazione tramite Browser
          RegistrationView.as_view(
             form_class=CustomUserForm,
             success_url="/",
@@ -40,7 +40,7 @@ urlpatterns = [
     path("accounts/",  #login tramite urls a dispozione grazie a django
          include("django.contrib.auth.urls")),
 
-    path("api/",
+    path("api/",       
          include("users.api.urls")),
 
     path("api/",

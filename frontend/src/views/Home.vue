@@ -1,34 +1,34 @@
 <template>
   <div class="home-view">
-      <div class="container">
-          <div class="mt-2">
-              <div v-for="message in messages"
-                   :key="message.pk">
+    <div class="container">
+        <div class="mt-2">
+            <div v-for="message in messages"
+               :key="message.pk">
 
-                <p class="mb-0">Messaggio aggiunto da
-                    <span class="author_name">{{ message.author }}</span>
-                </p>
-                <h2>
-                    <router-link
-                        :to="{ name: 'message', params: {slug: message.slug} }"
-                        class="question-link">
-                        {{ message.content }}
-                    </router-link>
-                </h2>
-                <hr>
-              </div>
+              <p class="mb-0">Messaggio aggiunto da
+                <span class="author_name">{{ message.author }}</span>
+              </p>
+              <h2>
+                <router-link
+                  :to="{ name: 'message', params: {slug: message.slug, pk: message.pk} }"
+                  class="question-link">
+                  {{ message.content }}
+                </router-link>
+              </h2>
+              <hr>
+            </div>
 
-          </div>
-          <div class="my-4">
-              <p v-show="loadingMessages">...loading...</p>
-              <button
-                 v-show="next"
-                 @click="getMessages"
-                 class="btn btn-sm btn-outline-success"
-                 >Carica Ancora
-              </button>
-          </div>
-      </div>
+        </div>
+        <div class="my-4">
+            <p v-show="loadingMessages">...loading...</p>
+          <button
+             v-show="next"
+             @click="getMessages"
+             class="btn btn-sm btn-outline-success"
+             >Carica Ancora
+          </button>
+        </div>
+    </div>
   </div>
 </template>
 
@@ -68,7 +68,7 @@ export default {
 
   created() {
     this.getMessages();
-    document.title= "Messagi";
+    document.title= "Messaggi";
   }
 };
 </script>
@@ -88,4 +88,5 @@ export default {
     color: #343A40;
     text-decoration: none;
   }
+
 </style>

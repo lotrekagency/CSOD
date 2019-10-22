@@ -1,3 +1,5 @@
+// utilizzaimo vue router per specificare i percorsi che andranno a formare
+// la nostra applicazione
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
