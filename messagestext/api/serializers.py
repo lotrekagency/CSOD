@@ -9,6 +9,7 @@ class AnswerSerializer(serializers.ModelSerializer):
     created_at = serializers.SerializerMethodField(read_only=True)
     likes_count = serializers.SerializerMethodField(read_only=True)
     user_has_voted = serializers.SerializerMethodField(read_only=True)
+    message_slug = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Answer
@@ -23,6 +24,9 @@ class AnswerSerializer(serializers.ModelSerializer):
     def get_user_has_voted(self, instance): #con questo metodo otterremo True o False a seconda che lo user abbia votato o meno
         request = self.context.get("request")
         return instance.voters.filter(pk=request.user.pk).exists()
+
+    def get_message_slug(self, instance):
+        return instance.messagetext.slug
 
 class MessageTextSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField(read_only=True)

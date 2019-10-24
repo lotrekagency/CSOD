@@ -54,7 +54,7 @@ class AnswerCreateAPIView(generics.CreateAPIView):
 
         serializer.save(author=request_user, messagetext=messagetext)
 
-class AnswerListAPIView(generics.ListAPIView):
+class MessageTextAnswerListAPIView(generics.ListAPIView):
     serializer_class = AnswerSerializer
     permission_classes = [IsAuthenticated]
 
@@ -89,6 +89,7 @@ class AnswerLikeAPIView(APIView):
         serializer = self.serializer_class(answer, context=serializer_context)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 class AnswerRUDAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Answer.objects.all()

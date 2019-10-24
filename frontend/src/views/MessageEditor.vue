@@ -5,33 +5,21 @@
                 <h1 class="mb-3">Aggiungi un messaggio</h1>
                 <form @submit.prevent="onSubmit">
                   <textarea
-                      v-model="message_body"
+                      v-model="messageBody"
                       class="form-control"
                       placeholder="Scrivi qualcosa..."
                       rows="3">
                   </textarea>
-                  <!-- <form enctype="multipart/form-data">
-                      <input type="type" name="file" v-on:change="fileChange($event.target.files)">
-                      <input type="type" name="file" v-on:change="fileChange($event.target.files)">
-                      <button type="button" v-on:click="upload()">Upload</button>
-                  </form> -->
                   <!-- <label class="select-file"> -->
                     <input type="file" @change="onFileChanged">
                     <button
                     class="btn btn-success"
-                    type="submit" @click="onUpload">Upload!</button>
+                    type="submit" @click="onUpload">Invio</button>
                   <p class="muted error mt-2">{{ error }}</p>
-                    <!-- <input type="type" name="file" @change="fileChange($event, index)"> -->
-                  <!-- </label> -->
+                    <!-- <input type="type" name="file" @change="fileChange($event, index)">
+                  </label> -->
                 </form>
-                  <br>
-                  <!-- <button
-                    class="btn btn-success"
-                    type="submit"
-                    >Invio
-                  </button> -->
-
-
+                <br>
             </div>
         </div>
     </div>
@@ -43,26 +31,52 @@ import axios from "axios";
 export default {
     name: "MessageEditor",
 
+    props: {
+        slug: {
+          type: String,
+          required: false    // false perchè usiamo questo componente per modificare le domande
+        },                   // ma lo stiamo già utilizzando di crearne di nuove
+        previousMessage:{
+          type: String,
+          required: false
+        }
+    },
+
     data() {
       return{
-        message_body: null,
+        messageBody: this.previousMessage || null,
         error: null,
-        selectedFile: null
+        // selectedFile: null
         //files: new FormData()
         // message_cover: '',
       }
     },
 
+    async beforeRouteEnter(to, from, next) {
+      if (to.params.slug !== undefined) {
+        let endpoint = `/api/messagestext/${to.params.slug}/`;
+        await apiService(endpoint)
+                .then((data) => {
+                  to.params.previousMessage = data.content;
+                })
+      }
+      return next();
+    },
+
     methods: {
       onSubmit() {
-        if (!this.message_body) {
+        if (!this.messageBody) {
             this.error = "Il campo non può essere vuoto!"
-        } else if (this.message_body.length > 240) {
+        } else if (this.messageBody.length > 240) {
             this.error= "Non superare i 240 caratteri"
         } else {
-          let endpoint = "/api/messagestext/";
+          let endpoint = `/api/messagestext/`;
           let method = "POST";
-          apiService(endpoint, method, {content: this.message_body, cover: this.message_cover})
+          if (this.previousMessage) {
+            method = "PUT";
+            endpoint += `${this.slug}/`;
+          }
+          apiService(endpoint, method, {content: this.messageBody, cover: this.message_cover})
               .then(message_data => {
                   this.$router.push({
                       name: "message",

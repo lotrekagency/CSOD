@@ -1,6 +1,7 @@
 <template lang="html">
-  <nav id="sidebar">
-    <div class="wrapper">
+  <div class="wrapper">
+      <!-- Sidebar -->
+    <nav id="sidebar">
       <div class="sidebar-header">
         <router-link
           :to="{ name: 'welcome'}"
@@ -34,9 +35,10 @@
           </ul>
         </div>
       </div>
-    </div>
+  </nav>
+  <!-- Page Content -->
     <div id="content">
-      <nav class="navbar navbar-expand-lg">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <button type="button" id="sidebarCollapse" class="btn btn-info">
             <i class="fas fa-align-left"></i>
@@ -45,33 +47,21 @@
         </div>
       </nav>
     </div>
-  </nav>
-
-    <!-- Page Content -->
-  <!-- <div id="content">
-    <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid">
-        <button type="button" id="sidebarCollapse" class="btn btn-info">
-          <i class="fas fa-align-left"></i>
-          <span>Toggle Sidebar</span>
-        </button>
-      </div>
-    </nav>
-  </div> -->
-
+  </div>
 </template>
 
 <script>
 export default {
   name: "SidebarComponent",
-}
 
-// $(document).ready(function () {
-//
-//   $('#sidebarCollapse').on('click', function(){
-//     $('#sidebar').toggleClass('active');
-//   });
-// });
+  // methods: {
+  //   $(document).ready(function () {
+  //     $('#sidebarCollapse').on('click', function(){
+  //       $('#sidebar').toggleClass('active');
+  //     });
+  //   });
+  // }
+}
 
 </script>
 
@@ -80,14 +70,24 @@ export default {
 .wrapper {
     display: flex;
     align-items: flex-start;
+    margin-top: -10px;
+    float: left;
 }
 
+.navbar-nav {
+  margin-top: 25px;
+}
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    min-height: 100vh;
+    min-height: 150vh;
     position: relative;
-    float: left;
+    margin-top: -10px;
+}
+.container-fluid {
+  position: absolute;
+  top: 20px;
+  left: 900px;
 }
 
 #sidebar.active {
@@ -132,6 +132,8 @@ a, a:hover, a:focus {
     color: inherit;
     text-decoration: none;
     transition: all 0.3s;
+    font-size: 1.7em;
+    margin-top: 10px;
 }
 
 #sidebar {
@@ -145,6 +147,7 @@ a, a:hover, a:focus {
     padding: 20px;
     background: #2595ab;
     text-align: center;
+    margin-top: 12px;
 }
 
 #sidebar ul.components {
@@ -176,5 +179,4 @@ ul ul a {
     padding-left: 30px !important;
     background: #6d7fcc;
 }
-
 </style>

@@ -11,10 +11,11 @@
               <h2>
                 <router-link
                   :to="{ name: 'message', params: {slug: message.slug, pk: message.pk} }"
-                  class="question-link">
+                  class="message-link">
                   {{ message.content }}
                 </router-link>
               </h2>
+              <p>Risposte: {{ message.answers_count }}</p>
               <hr>
             </div>
 
@@ -79,12 +80,12 @@ export default {
     color: #DC3545;
   }
 
-  .question-link {
+  .message-link {
     font-weight:  bold;
     color: black;
   }
 
-  .question-link:hover {
+  .message-link:hover {
     color: #343A40;
     text-decoration: none;
   }

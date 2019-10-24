@@ -1,10 +1,10 @@
 <template>
   <div class="welcome-view">
-    <!-- <div class="container"> -->
+    <div class="container">
         <div class="mt-2">
             <h1>Benvenuto</h1>
         </div>
-    <!-- </div> -->
+    </div>
   </div>
 </template>
 
@@ -20,20 +20,17 @@ export default {
 
 .welcome-view {
   position:relative;
-    font-weight:  bold;
-    color: black;
-    text-align: center;
-    margin-top: 20px;
+  font-weight:  bold;
+  color: black;
+  text-align: center;
 }
 .container {
   position: auto;
-    font-weight: bold;
-    align-self: auto;
-    margin-top: 200px;
-
+  font-weight: bold;
+  align-self: auto;
+  text-align: center;
 }
-
-.mt-2 {
+/* .mt-2 {
   margin-top: 20px;
-}
+} */
 </style>

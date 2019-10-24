@@ -9,8 +9,8 @@ urlpatterns = [
     path("", include(router.urls)),
 
     path("messagestext/<slug:slug>/answers/",
-         mv.AnswerListAPIView.as_view(),
-         name="question-answers-list"),
+         mv.MessageTextAnswerListAPIView.as_view(),
+         name="message-answers-list"),
 
     path("messagestext/<slug:slug>/answer/",
          mv.AnswerCreateAPIView.as_view(),
